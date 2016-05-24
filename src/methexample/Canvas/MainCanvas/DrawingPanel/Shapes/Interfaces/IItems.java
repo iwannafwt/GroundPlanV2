@@ -13,4 +13,6 @@ public interface IItems {
     void doDrawing(Graphics g);
     int getHelperSize();
     IItems reCreate();
+    
+    int getSize(); 
 }

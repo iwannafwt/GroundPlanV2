@@ -82,4 +82,9 @@ public class Triangle implements IItems, IItemLocateable {
                 getHelperSize()
         );
     }
+
+    @Override
+    public int getSize() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 }
