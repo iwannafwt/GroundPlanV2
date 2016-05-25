@@ -37,7 +37,7 @@ public class BaseFrame extends JFrame {
 
     private void initUI() {
         BaseCanvas = new BaseDrawingCanvas(150, 50, 150, 100);//diastaseis apo ta tetragwnakia
-        toolBox = new BaseToolboxCanvas();
+        toolBox = new BaseToolboxCanvas(this);/*this*/
 
         BaseCanvas.registerMouseListeners(new ResizeAdapter(BaseCanvas));
         BaseCanvas.registerMouseListeners(new MovingAdapter(BaseCanvas));
@@ -65,11 +65,11 @@ public class BaseFrame extends JFrame {
     }
 
     public void redo() {
-       // BaseCanvas.redo();
+        BaseCanvas.redo();
     }
 
     public void undo() {
-        //BaseCanvas.undo();
+        BaseCanvas.undo();
     }
 }
 

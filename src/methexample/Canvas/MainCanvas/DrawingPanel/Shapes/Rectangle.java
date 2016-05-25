@@ -43,7 +43,11 @@ public class Rectangle implements IItems, IItemLocateable {
 
     @Override
     public boolean isHit(Point p) {
-        return true; /*------ not supportet yey------*/
+        
+        double a = p.getX();
+        double b = p.getY();
+        
+        return true;
     }
 
     public List<Point2D> getRectangeCorners() {
@@ -98,5 +102,4 @@ public class Rectangle implements IItems, IItemLocateable {
     public int getSize() {
         return helperSize;
     }
-
 }

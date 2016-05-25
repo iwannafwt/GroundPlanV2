@@ -33,13 +33,11 @@ public class BaseDrawingCanvas extends JPanel implements IBaseDrawingCanvas {
     private IItems rectangleTwo;
 
     //<editor-fold desc="GettersSetters" defaultstate="collapsed">
-    public int getPosForItem() {
-        return posForItem;
-    }
 
 //    public void setPosForItem(int posForItem) {
 //        this.posForItem = posForItem;
 //    }
+    @Override
     public int getSIZE() {
         return SIZE;
     }
@@ -58,8 +56,26 @@ public class BaseDrawingCanvas extends JPanel implements IBaseDrawingCanvas {
     public int getPosCorner() {
         return posCorner;
     }
+    
+    
+    @Override
+    public void setPosCorner(int posForItem) {
+        this.posCorner = posCorner;
+    }
 
-    //</editor-fold>
+   
+    
+    @Override
+    public int getPosForItem() {
+        return posForItem;
+    }
+    
+    @Override
+    public void setPosForItem(int posForItem) {
+        this.posForItem = posForItem;
+    }
+     //</editor-fold>
+
     public BaseDrawingCanvas(int x1, int x2, int y1, int y2) {
         initUI(x1, x2, y1, y2);
     }
@@ -98,11 +114,14 @@ public class BaseDrawingCanvas extends JPanel implements IBaseDrawingCanvas {
         for (IItems vLookUp : myItemsList) {
             vLookUp.doDrawing(g2);
         }
+        /*----------------- Error sto undo kai Redo-------*/
 //        rectangleOne.doDrawing(g);
 //        rectangleTwo.doDrawing(g);
+        /*------------------------------------------------*/
 
     }
 
+    @Override
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
         doDrawing(g);
@@ -127,7 +146,7 @@ public class BaseDrawingCanvas extends JPanel implements IBaseDrawingCanvas {
 
     @Override
     public int getHelperSize() {
-        return 0;/*Not Supportet yet*/
+        return SIZE;
     }
 
     @Override
@@ -136,10 +155,6 @@ public class BaseDrawingCanvas extends JPanel implements IBaseDrawingCanvas {
         addMouseMotionListener(MA);//sinartisi tou JPanel
     }
 
-    @Override
-    public void setPosForItem(int posForItem) {
-        this.posForItem = posForItem;
-    }
 
     @Override
     public boolean undo() {
@@ -186,12 +201,8 @@ public class BaseDrawingCanvas extends JPanel implements IBaseDrawingCanvas {
 
     }
 
-    @Override
-    public void setPosCorner(int posForItem) {
-        this.posCorner = posCorner;
-    }
 
     public void setItems(IItems newItem) {
-       myItemsList.add(newItem);
+        myItemsList.add(newItem);
     }
 }

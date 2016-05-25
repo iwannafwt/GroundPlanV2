@@ -1,12 +1,10 @@
 package methexample.Canvas.MainCanvas.ToolboxPanel.MouseAdapters;
 
-import java.awt.Point;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import methexample.Canvas.MainCanvas.DrawingPanel.Shapes.Interfaces.IItemLocateable;
 import methexample.Canvas.MainCanvas.DrawingPanel.Shapes.Interfaces.IItems;
-import methexample.Canvas.MainCanvas.ToolboxPanel.Items.Interfaces.IToolboxItems;
-import methexample.Canvas.MainCanvas.ToolboxPanel.Items.Rectangle;
+import methexample.Canvas.MainCanvas.Interfaces.IBaseToolboxCanvas;
 
 /**
  *
@@ -15,10 +13,10 @@ import methexample.Canvas.MainCanvas.ToolboxPanel.Items.Rectangle;
 public class MouseEvents implements MouseListener {
 
     private final IItems items;
-    private final IToolboxItems toolboxItems;
+    private final IBaseToolboxCanvas toolboxItems;
     boolean clicked;
 
-    public MouseEvents(IItems myItem, IToolboxItems toolboxItems) {
+    public MouseEvents(IItems myItem, IBaseToolboxCanvas toolboxItems) {
         this.toolboxItems = toolboxItems;
         this.items = myItem;
     }
