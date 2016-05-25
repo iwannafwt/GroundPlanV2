@@ -18,17 +18,18 @@ public interface IBaseDrawingCanvas {
     void doUpdate();
     void registerItem(IItems newItem);
     int getPosCorner();
-    void setPosCorner();
+    void setPosCorner(int posForItem);
     List<IItems> getItems();
     int getPos();
     void setPos(int pos);
     int getHelperSize();
     void paintComponent(Graphics g);
     void registerMouseListeners(MouseAdapter MA);
-    int setPosForItem(int posForItem);
+    void setPosForItem(int posForItem);
+    int getPosForItem();
     boolean undo();
     boolean redo();
-    boolean setUndo();
-   
+    void setUndo();
+   int getSIZE();
  
 }

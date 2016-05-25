@@ -3,12 +3,12 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package methexample.Canvas.MainCanvas.ToolboxPanel.Items.Interfaces;
+package methexample.Canvas.MainCanvas.ToolboxPanel.MouseAdapters;
 
 /**
  *
  * @author ΙΩΑΝΝΑ
  */
-public interface IToolboxItems {
+class IItems {
     
 }

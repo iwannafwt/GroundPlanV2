@@ -8,7 +8,7 @@ package methexample.Canvas.MainCanvas.Interfaces;
 import java.awt.Graphics;
 import java.util.List;
 import methexample.Canvas.MainCanvas.DrawingPanel.Shapes.Interfaces.IItems;
-import methexample.Canvas.MainCanvas.ToolboxPanel.Items.Interfaces.IToolboxItems;
+import methexample.Canvas.MainCanvas.ToolboxPanel.Items.Rectangle;
 
 /**
  *
@@ -18,5 +18,5 @@ public interface IBaseToolboxCanvas {
     public void sendNewRegister(IItems newItem);
     public void paintComponent(Graphics g); 
     public void doRepaint();
-    public List<IToolboxItems> getItems();
+    public List<Rectangle> getItems();
 }
