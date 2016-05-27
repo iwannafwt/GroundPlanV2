@@ -16,7 +16,7 @@ import methexample.Canvas.MainCanvas.DrawingPanel.Shapes.Interfaces.IItems;
  *
  * @author ΙΩΑΝΝΑ
  */
-public class Rectangle implements IItems, IItemLocateable {
+public class Rectangle implements IItems, IItemLocateable , java.io.Serializable {
 
     private final List<Point2D> rectangeCorners = new ArrayList<>();
     private final Rectangle2D myShape = new Rectangle2D.Double();

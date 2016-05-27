@@ -1,6 +1,8 @@
 package methexample.Canvas.MainCanvas.DrawingPanel.Shapes;
 
+import java.awt.Color;
 import java.awt.Graphics;
+import java.awt.Graphics2D;
 import java.awt.Point;
 import java.awt.Polygon;
 import java.awt.geom.Point2D;
@@ -17,6 +19,7 @@ public class Triangle implements IItems, IItemLocateable {
     private final List<Point2D> triangleCorners = new ArrayList<>();
     private final Polygon myShape = new Polygon();
     private final int helperSize;
+    private Polygon polygon;
 
     /**
      * 
@@ -42,7 +45,11 @@ public class Triangle implements IItems, IItemLocateable {
     
     @Override
     public boolean isHit(Point p) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+                
+        double a = p.getX();
+        double b = p.getY();
+        
+        return true;
     }
 
     public List<Point2D> getTriangleCorners() {
@@ -60,12 +67,29 @@ public class Triangle implements IItems, IItemLocateable {
 
     @Override
     public List<Point2D> getPoints() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return triangleCorners;
     }
 
     @Override
     public void doDrawing(Graphics g) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        
+        Graphics2D g2 = (Graphics2D) g;
+        
+        for (Point2D point : triangleCorners) {//to mikro tetragwno
+            //einai to kentro tou mikrou tetragwnou
+            //double x = point.getX() - helperSize / 2;
+            //double y = point.getY() - helperSize / 2;
+            
+            g2.fill(myShape);
+        }
+        Polygon p = new Polygon();
+        for (int i = 0; i < 3; i++){
+            p.addPoint((int) (100 + 50 * Math.cos(i * 2 * Math.PI / 5)),
+                    (int) (100 + 50 * Math.sin(i * 2 * Math.PI / 5)));
+        }
+     
+        g.fillPolygon(p);
+        g.drawPolygon(p);
     }
 
     @Override
@@ -80,6 +104,6 @@ public class Triangle implements IItems, IItemLocateable {
 
     @Override
     public int getSize() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return helperSize;
     }
 }

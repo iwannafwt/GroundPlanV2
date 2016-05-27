@@ -4,13 +4,16 @@ import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Point;
+import java.awt.Polygon;
 import java.awt.event.MouseAdapter;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JPanel;
 import methexample.Canvas.MainCanvas.DrawingPanel.Background.Background;
+import methexample.Canvas.MainCanvas.DrawingPanel.Shapes.Circle;
 import methexample.Canvas.MainCanvas.DrawingPanel.Shapes.Interfaces.IItems;
 import methexample.Canvas.MainCanvas.DrawingPanel.Shapes.Rectangle;
+import methexample.Canvas.MainCanvas.DrawingPanel.Shapes.Triangle;
 import methexample.Canvas.MainCanvas.Interfaces.IBaseDrawingCanvas;
 
 /**
@@ -28,9 +31,12 @@ public class BaseDrawingCanvas extends JPanel implements IBaseDrawingCanvas {
     private int pos;
     private int posCorner;
     private int posForItem;
-
+    
+    private IItems polygon;
+    private IItems circle;
     private IItems rectangleOne;
     private IItems rectangleTwo;
+   // private IItems triangle;
 
     //<editor-fold desc="GettersSetters" defaultstate="collapsed">
 
@@ -85,11 +91,15 @@ public class BaseDrawingCanvas extends JPanel implements IBaseDrawingCanvas {
         posForItem = -1;
         pos = -1;//otan to position einai -1 simenei oti exoume 
         //kseklikarei to pontiki 
-        rectangleOne = new Rectangle(new Point(x1, y1), new Point(x2, y2), 8);
+        rectangleOne = new Rectangle(new Point(x1 * 4, y1 * 4), new Point(x2 * 4, y2 * 4), 8);
         rectangleTwo = new Rectangle(new Point(x1 * 2, y1 * 2), new Point(x2 * 2, y2 * 2), 8);
-
+        //polygon = new Triangle(new Point(x1, y1), new Point(x2, y2), new Point(x2, y2), 8);
+        //circle = new Circle(new Point(x1*8, y1*8),0, 0);
+        
         setItems(rectangleOne);
         setItems(rectangleTwo);
+        //setItems(polygon);
+        //setItems(circle);
         setUndo();
         /*ta point enai i diagwnios
          *--------*
@@ -114,6 +124,7 @@ public class BaseDrawingCanvas extends JPanel implements IBaseDrawingCanvas {
         for (IItems vLookUp : myItemsList) {
             vLookUp.doDrawing(g2);
         }
+
         /*----------------- Error sto undo kai Redo-------*/
 //        rectangleOne.doDrawing(g);
 //        rectangleTwo.doDrawing(g);

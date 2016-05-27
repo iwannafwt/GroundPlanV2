@@ -19,7 +19,7 @@ import methexample.Canvas.MainCanvas.ToolboxPanel.BaseToolboxCanvas;
  */
 
 
-public class BaseFrame extends JFrame {
+public class BaseFrame extends JFrame implements java.io.Serializable{
 
     protected JSplitPane split;
     private IBaseDrawingCanvas BaseCanvas;
