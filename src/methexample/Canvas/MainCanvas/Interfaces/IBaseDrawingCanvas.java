@@ -7,6 +7,7 @@ package methexample.Canvas.MainCanvas.Interfaces;
 
 import java.awt.Graphics;
 import java.awt.event.MouseAdapter;
+import java.awt.geom.Point2D;
 import java.util.List;
 import methexample.Canvas.MainCanvas.DrawingPanel.Shapes.Interfaces.IItems;
 
@@ -25,11 +26,14 @@ public interface IBaseDrawingCanvas {
     int getHelperSize();
     void paintComponent(Graphics g);
     void registerMouseListeners(MouseAdapter MA);
-    void setPosForItem(int posForItem);
+    void setItemToMove(IItems item);
     int getPosForItem();
     boolean undo();
     boolean redo();
     void setUndo();
-   int getSIZE();
- 
+    int getSIZE();
+    
+    void startMovingItemContainingPoint(Point2D point);
+    IItems getItemToMove();
+    boolean hasSomethingToMove();
 }

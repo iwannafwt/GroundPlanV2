@@ -14,5 +14,7 @@ public interface IItems {
     int getHelperSize();
     IItems reCreate();
     
+    boolean containsPoint(Point2D point);
+    
     int getSize(); 
 }

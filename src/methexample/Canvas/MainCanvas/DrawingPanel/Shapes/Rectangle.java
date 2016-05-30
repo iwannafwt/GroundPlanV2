@@ -21,6 +21,7 @@ public class Rectangle implements IItems, IItemLocateable , java.io.Serializable
     private final List<Point2D> rectangeCorners = new ArrayList<>();
     private final Rectangle2D myShape = new Rectangle2D.Double();
     private final int helperSize;
+    private final Point2D upperPoint,lowerPoint;
 
     /**
      *
@@ -32,13 +33,15 @@ public class Rectangle implements IItems, IItemLocateable , java.io.Serializable
     public Rectangle(Point2D p1, Point2D p2, int helperSize) {
         this.rectangeCorners.add(p1);
         this.rectangeCorners.add(p2);
+        this.upperPoint = p1;
+        this.lowerPoint = p2;
         this.helperSize = helperSize;
+
         generateRectangle();
     }
 
-    private void generateRectangle() {
-        myShape.setFrameFromDiagonal(rectangeCorners.get(0),
-                rectangeCorners.get(1));
+        private void generateRectangle() {
+        myShape.setFrameFromDiagonal(getUpperPoint(),getLowerPoint());
     }
 
     @Override
@@ -57,6 +60,13 @@ public class Rectangle implements IItems, IItemLocateable , java.io.Serializable
     public Rectangle2D getMyShape() {
         return myShape;
     }
+    public Point2D getUpperPoint() {
+        return upperPoint;
+    }
+
+    public Point2D getLowerPoint() {
+        return lowerPoint;
+    }
 
     @Override
     public int getHelperSize() {
@@ -70,6 +80,7 @@ public class Rectangle implements IItems, IItemLocateable , java.io.Serializable
 
     @Override
     public void doDrawing(Graphics g) {
+        
         Graphics2D g2 = (Graphics2D) g;
 
         for (Point2D point : rectangeCorners) {//to mikro tetragwno
@@ -81,7 +92,7 @@ public class Rectangle implements IItems, IItemLocateable , java.io.Serializable
         }
 
         //dimiourgite kai ena tetragwno.gi auto einai ana 2         
-        myShape.setFrameFromDiagonal(rectangeCorners.get(0), rectangeCorners.get(1));
+        myShape.setFrameFromDiagonal(rectangeCorners.get(0),rectangeCorners.get(1));
         Paint tmp = g2.getPaint();
         g2.setPaint(new Color(0, 0, 100));// to xrwmma pou tha exei to tetragwno
         g2.fill(myShape);//gemizei to tetragwno
@@ -91,9 +102,8 @@ public class Rectangle implements IItems, IItemLocateable , java.io.Serializable
 
     @Override
     public IItems reCreate() {
-        return new Rectangle(
-                rectangeCorners.get(0),
-                rectangeCorners.get(1),
+        return new Rectangle(getPoints().get(0),
+                getPoints().get(1),
                 getHelperSize()
         );
     }
@@ -101,5 +111,16 @@ public class Rectangle implements IItems, IItemLocateable , java.io.Serializable
     @Override
     public int getSize() {
         return helperSize;
+    }
+    
+    
+    @Override
+    public boolean containsPoint(Point2D point) {
+        Rectangle2D rect = new Rectangle2D.Double();
+
+        rect.setFrameFromDiagonal(this.getUpperPoint(),
+                this.getLowerPoint());
+
+        return rect.contains(point);
     }
 }

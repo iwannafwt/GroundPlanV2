@@ -4,16 +4,14 @@ import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Point;
-import java.awt.Polygon;
 import java.awt.event.MouseAdapter;
+import java.awt.geom.Point2D;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JPanel;
 import methexample.Canvas.MainCanvas.DrawingPanel.Background.Background;
-import methexample.Canvas.MainCanvas.DrawingPanel.Shapes.Circle;
 import methexample.Canvas.MainCanvas.DrawingPanel.Shapes.Interfaces.IItems;
 import methexample.Canvas.MainCanvas.DrawingPanel.Shapes.Rectangle;
-import methexample.Canvas.MainCanvas.DrawingPanel.Shapes.Triangle;
 import methexample.Canvas.MainCanvas.Interfaces.IBaseDrawingCanvas;
 
 /**
@@ -31,18 +29,33 @@ public class BaseDrawingCanvas extends JPanel implements IBaseDrawingCanvas {
     private int pos;
     private int posCorner;
     private int posForItem;
-    
+
     private IItems polygon;
     private IItems circle;
     private IItems rectangleOne;
     private IItems rectangleTwo;
-   // private IItems triangle;
+    private IItems itemToMove;
+    // private IItems triangle;
 
     //<editor-fold desc="GettersSetters" defaultstate="collapsed">
-
-//    public void setPosForItem(int posForItem) {
+//    public void setItemToMove(int posForItem) {
 //        this.posForItem = posForItem;
 //    }
+    @Override
+    public IItems getItemToMove() {
+        return itemToMove;
+    }
+
+    @Override
+    public void setItemToMove(IItems posForItem) {
+        this.itemToMove = posForItem;
+    }
+
+    @Override
+    public boolean hasSomethingToMove() {
+        return this.itemToMove == null;
+    }
+
     @Override
     public int getSIZE() {
         return SIZE;
@@ -62,25 +75,17 @@ public class BaseDrawingCanvas extends JPanel implements IBaseDrawingCanvas {
     public int getPosCorner() {
         return posCorner;
     }
-    
-    
+
     @Override
     public void setPosCorner(int posForItem) {
         this.posCorner = posCorner;
     }
 
-   
-    
     @Override
     public int getPosForItem() {
         return posForItem;
     }
-    
-    @Override
-    public void setPosForItem(int posForItem) {
-        this.posForItem = posForItem;
-    }
-     //</editor-fold>
+    //</editor-fold>
 
     public BaseDrawingCanvas(int x1, int x2, int y1, int y2) {
         initUI(x1, x2, y1, y2);
@@ -95,7 +100,7 @@ public class BaseDrawingCanvas extends JPanel implements IBaseDrawingCanvas {
         rectangleTwo = new Rectangle(new Point(x1 * 2, y1 * 2), new Point(x2 * 2, y2 * 2), 8);
         //polygon = new Triangle(new Point(x1, y1), new Point(x2, y2), new Point(x2, y2), 8);
         //circle = new Circle(new Point(x1*8, y1*8),0, 0);
-        
+
         setItems(rectangleOne);
         setItems(rectangleTwo);
         //setItems(polygon);
@@ -129,7 +134,6 @@ public class BaseDrawingCanvas extends JPanel implements IBaseDrawingCanvas {
 //        rectangleOne.doDrawing(g);
 //        rectangleTwo.doDrawing(g);
         /*------------------------------------------------*/
-
     }
 
     @Override
@@ -165,7 +169,6 @@ public class BaseDrawingCanvas extends JPanel implements IBaseDrawingCanvas {
         addMouseListener(MA);//sinartisi tou JPanel
         addMouseMotionListener(MA);//sinartisi tou JPanel
     }
-
 
     @Override
     public boolean undo() {
@@ -212,8 +215,20 @@ public class BaseDrawingCanvas extends JPanel implements IBaseDrawingCanvas {
 
     }
 
-
     public void setItems(IItems newItem) {
         myItemsList.add(newItem);
     }
+
+    @Override
+    public void startMovingItemContainingPoint(Point2D point) {
+
+        for (IItems item : this.getItems()) {
+            if (item.containsPoint(point)) {
+                this.setUndo();
+
+                this.setItemToMove(item);
+            }
+        }
+    }
+
 }

@@ -106,4 +106,9 @@ public class Triangle implements IItems, IItemLocateable {
     public int getSize() {
         return helperSize;
     }
+    
+    @Override
+    public boolean containsPoint(Point2D points){
+        return true; /*Not Supportet yet*/
+    }
 }
