@@ -4,6 +4,8 @@ import java.awt.BorderLayout;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JSplitPane;
+import methexample.Canvas.MainCanvas.DrawingPanel.Adapters.Keyboard.NewListener;
+import methexample.Canvas.MainCanvas.DrawingPanel.Adapters.Keyboard.SaveLoadListener;
 import methexample.Canvas.MainCanvas.DrawingPanel.Adapters.Keyboard.UndoRedoListener;
 import methexample.Canvas.MainCanvas.DrawingPanel.Adapters.Mouse.MovingAdapter;
 import methexample.Canvas.MainCanvas.DrawingPanel.Adapters.Mouse.ResizeAdapter;
@@ -42,12 +44,14 @@ public class BaseFrame extends JFrame implements java.io.Serializable{
         BaseCanvas.registerMouseListeners(new ResizeAdapter(BaseCanvas));
         BaseCanvas.registerMouseListeners(new MovingAdapter(BaseCanvas));
         addKeyListener(new UndoRedoListener(this));
+        addKeyListener(new SaveLoadListener());
+        addKeyListener(new NewListener());
 
         if (BaseCanvas instanceof JPanel) {
 
             split = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT, (JPanel) toolBox, (JPanel) BaseCanvas);
             split.setContinuousLayout(false);
-            split.setOneTouchExpandable(false);
+            split.setOneTouchExpandable(true);
 
             getContentPane().add(split, BorderLayout.CENTER);
 
