@@ -1,4 +1,4 @@
-package methexample.Canvas.MainCanvas.ToolboxPanel.Items;
+package methexample.Canvas.MainCanvas.ToolboxPanel.Items.shape;
 
 import java.awt.Point;
 import java.awt.geom.Rectangle2D;

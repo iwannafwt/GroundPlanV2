@@ -8,7 +8,7 @@ package methexample.Canvas.MainCanvas.Interfaces;
 import java.awt.Graphics;
 import java.util.List;
 import methexample.Canvas.MainCanvas.DrawingPanel.Shapes.Interfaces.IItems;
-import methexample.Canvas.MainCanvas.ToolboxPanel.Items.Rectangle;
+import methexample.Canvas.MainCanvas.ToolboxPanel.Items.shape.Rectangle;
 
 /**
  *
