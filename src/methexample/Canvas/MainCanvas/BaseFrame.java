@@ -65,7 +65,6 @@ public class BaseFrame extends JFrame implements java.io.Serializable{
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setExtendedState(JFrame.MAXIMIZED_BOTH);
         setLocationRelativeTo(null);
-
     }
 
     public void redo() {

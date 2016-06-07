@@ -11,12 +11,14 @@ import methexample.Canvas.MainCanvas.Interfaces.IBaseDrawingCanvas;
  *
  * @author ΙΩΑΝΝΑ
  */
-public class MovingAdapter extends MouseAdapter{
-    private final IBaseDrawingCanvas iResizeHandle;
+public class MovingAdapter extends MouseAdapter {
+
+    private final IBaseDrawingCanvas iBaseDrawingCanvas;
     private Point2D oldP;
 
+
     public MovingAdapter(IBaseDrawingCanvas iResizeHandle) {
-        this.iResizeHandle = iResizeHandle;
+        this.iBaseDrawingCanvas = iResizeHandle;
     }
 
     @Override
@@ -26,28 +28,28 @@ public class MovingAdapter extends MouseAdapter{
         oldP = event.getPoint();//blepw pou einai to pontiki->Pressed
         Rectangle2D r = new Rectangle2D.Double();
 
-        for (int i = 0; i < iResizeHandle.getItems().size(); i++) {
-            r.setFrameFromDiagonal(iResizeHandle.getItems().get(i).getPoints()
-                    .get(0), iResizeHandle.getItems().get(i).getPoints()
-                            .get(1));
+        for (int i = 0; i < iBaseDrawingCanvas.getItems().size(); i++) {
+            r.setFrameFromDiagonal(iBaseDrawingCanvas.getItems().get(i).getPoints()
+                    .get(0), iBaseDrawingCanvas.getItems().get(i).getPoints()
+                    .get(1));
 
             if (r.contains(p)) {
-                iResizeHandle.setUndo();
-                iResizeHandle.setPosForItem(i);
+                iBaseDrawingCanvas.setUndo();
+                iBaseDrawingCanvas.setPosForItem(i);
                 return;
             }
         }
-    }
+}
 
     @Override
     public void mouseReleased(MouseEvent event) {
-        iResizeHandle.setPosForItem(-1);
+        iBaseDrawingCanvas.setPosForItem(-1);
     }
 
     @Override
     public void mouseDragged(MouseEvent event) {
 
-        if (iResizeHandle.getPosForItem() == -1) {
+        if (iBaseDrawingCanvas.getPosForItem() == -1) {
             return;
         }
 
@@ -58,22 +60,20 @@ public class MovingAdapter extends MouseAdapter{
         oldP = event.getPoint();//auto einai to kainourgio Pressed
 
         Point2D pToGo = new Point();
-        pToGo.setLocation(
-                iResizeHandle.getItems().get(iResizeHandle.getPosForItem())
+        pToGo.setLocation(iBaseDrawingCanvas.getItems().get(iBaseDrawingCanvas.getPosForItem())
                 .getPoints().get(0).getX() + p3.getX(),
-                iResizeHandle.getItems().get(iResizeHandle.getPosForItem())
+                iBaseDrawingCanvas.getItems().get(iBaseDrawingCanvas.getPosForItem())
                 .getPoints().get(0).getY() + p3.getY());
-        iResizeHandle.getItems().get(iResizeHandle.getPosForItem())
+        iBaseDrawingCanvas.getItems().get(iBaseDrawingCanvas.getPosForItem())
                 .getPoints().set(0, new Point((Point) pToGo));
 
-        pToGo.setLocation(
-                iResizeHandle.getItems().get(iResizeHandle.getPosForItem())
+        pToGo.setLocation(iBaseDrawingCanvas.getItems().get(iBaseDrawingCanvas.getPosForItem())
                 .getPoints().get(1).getX() + p3.getX(),
-                iResizeHandle.getItems().get(iResizeHandle.getPosForItem())
+                iBaseDrawingCanvas.getItems().get(iBaseDrawingCanvas.getPosForItem())
                 .getPoints().get(1).getY() + p3.getY());
-        iResizeHandle.getItems().get(iResizeHandle.getPosForItem())
+        iBaseDrawingCanvas.getItems().get(iBaseDrawingCanvas.getPosForItem())
                 .getPoints().set(1, new Point((Point) pToGo));
 
-        iResizeHandle.doUpdate();
+        iBaseDrawingCanvas.doUpdate();
     }
 }

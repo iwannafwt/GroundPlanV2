@@ -1,6 +1,5 @@
 package methexample.Canvas.MainCanvas.DrawingPanel.Shapes;
 
-import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Point;
@@ -15,11 +14,10 @@ import methexample.Canvas.MainCanvas.DrawingPanel.Shapes.Interfaces.IItems;
  *
  * @author ΙΩΑΝΝΑ
  */
-public class Triangle implements IItems, IItemLocateable {
+public class Triangle implements IItems, IItemLocateable , java.io.Serializable{
     private final List<Point2D> triangleCorners = new ArrayList<>();
     private final Polygon myShape = new Polygon();
     private final int helperSize;
-    private Polygon polygon;
 
     /**
      * 
@@ -77,13 +75,14 @@ public class Triangle implements IItems, IItemLocateable {
         
         for (Point2D point : triangleCorners) {//to mikro tetragwno
             //einai to kentro tou mikrou tetragwnou
-            //double x = point.getX() - helperSize / 2;
-            //double y = point.getY() - helperSize / 2;
+            double x = point.getX() - helperSize / 2;
+            double y = point.getY() - helperSize / 2;
             
             g2.fill(myShape);
         }
         Polygon p = new Polygon();
         for (int i = 0; i < 3; i++){
+            /*allagi twn diastasew tou trigwnou*/
             p.addPoint((int) (100 + 50 * Math.cos(i * 2 * Math.PI / 5)),
                     (int) (100 + 50 * Math.sin(i * 2 * Math.PI / 5)));
         }
