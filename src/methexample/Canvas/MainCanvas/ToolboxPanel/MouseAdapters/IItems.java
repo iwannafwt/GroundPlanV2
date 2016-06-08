@@ -9,6 +9,6 @@ package methexample.Canvas.MainCanvas.ToolboxPanel.MouseAdapters;
  *
  * @author ΙΩΑΝΝΑ
  */
-class IItems {
+public interface IItems {
     
 }

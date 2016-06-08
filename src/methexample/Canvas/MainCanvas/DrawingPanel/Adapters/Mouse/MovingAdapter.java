@@ -53,24 +53,25 @@ public class MovingAdapter extends MouseAdapter {
             return;
         }
 
-        Point2D p3 = new Point();
+        Point2D mouseMovedDistance = new Point();/*poso kounithike to pontiki*/
 
-        p3.setLocation(event.getPoint().getX() - oldP.getX(),
+        mouseMovedDistance.setLocation(event.getPoint().getX() - oldP.getX(),
                 event.getPoint().getY() - oldP.getY());
         oldP = event.getPoint();//auto einai to kainourgio Pressed
 
-        Point2D pToGo = new Point();
+        Point2D pToGo = new Point();/*panw gwnia*/
         pToGo.setLocation(iBaseDrawingCanvas.getItems().get(iBaseDrawingCanvas.getPosForItem())
-                .getPoints().get(0).getX() + p3.getX(),
+                .getPoints().get(0).getX() + mouseMovedDistance.getX(),
                 iBaseDrawingCanvas.getItems().get(iBaseDrawingCanvas.getPosForItem())
-                .getPoints().get(0).getY() + p3.getY());
+                .getPoints().get(0).getY() + mouseMovedDistance.getY());
         iBaseDrawingCanvas.getItems().get(iBaseDrawingCanvas.getPosForItem())
                 .getPoints().set(0, new Point((Point) pToGo));
-
+        
+        /*katw gwnia*/
         pToGo.setLocation(iBaseDrawingCanvas.getItems().get(iBaseDrawingCanvas.getPosForItem())
-                .getPoints().get(1).getX() + p3.getX(),
+                .getPoints().get(1).getX() + mouseMovedDistance.getX(),
                 iBaseDrawingCanvas.getItems().get(iBaseDrawingCanvas.getPosForItem())
-                .getPoints().get(1).getY() + p3.getY());
+                .getPoints().get(1).getY() + mouseMovedDistance.getY());
         iBaseDrawingCanvas.getItems().get(iBaseDrawingCanvas.getPosForItem())
                 .getPoints().set(1, new Point((Point) pToGo));
 

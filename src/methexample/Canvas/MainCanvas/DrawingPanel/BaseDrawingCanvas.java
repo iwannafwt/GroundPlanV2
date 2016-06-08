@@ -90,7 +90,7 @@ public class BaseDrawingCanvas extends JPanel implements IBaseDrawingCanvas {
         rectangleOne = new Rectangle(new Point(x1 * 4, y1 * 4), new Point(x2 * 4, y2 * 4), 8);
         rectangleTwo = new Rectangle(new Point(x1 * 2, y1 * 2), new Point(x2 * 2, y2 * 2), 8);
         //circle = new Circle(new Point(x1*8, y1*8),0, 0);
-        Triangle triangle = new Triangle(new Point(x1, y1),new Point(x1, y1), new Point(x2, y2), 8);
+        Triangle triangle = new Triangle(new Point(100, 10),new Point(50, 100), new Point(150, 100), 8);
 
         setItems(triangle);
         setItems(rectangleOne);

@@ -18,6 +18,8 @@ public class Triangle implements IItems, IItemLocateable , java.io.Serializable{
     private final List<Point2D> triangleCorners = new ArrayList<>();
     private final Polygon myShape = new Polygon();
     private final int helperSize;
+    
+    private Polygon polygon;
 
     /**
      * 
@@ -31,6 +33,8 @@ public class Triangle implements IItems, IItemLocateable , java.io.Serializable{
         this.triangleCorners.add(p2);
         this.triangleCorners.add(p3);
         this.helperSize = helperSize;
+        
+        
         generatePolygon();
     }
     
@@ -43,11 +47,8 @@ public class Triangle implements IItems, IItemLocateable , java.io.Serializable{
     
     @Override
     public boolean isHit(Point p) {
-                
-        double a = p.getX();
-        double b = p.getY();
-        
-        return true;
+   
+        return myShape.contains(p);
     }
 
     public List<Point2D> getTriangleCorners() {
@@ -85,10 +86,20 @@ public class Triangle implements IItems, IItemLocateable , java.io.Serializable{
             /*allagi twn diastasew tou trigwnou*/
             p.addPoint((int) (100 + 50 * Math.cos(i * 2 * Math.PI / 5)),
                     (int) (100 + 50 * Math.sin(i * 2 * Math.PI / 5)));
+           
         }
-     
-        g.fillPolygon(p);
-        g.drawPolygon(p);
+        
+        
+//        polygon = new Polygon();
+////        polygon.addPoint(100, 10);
+////        polygon.addPoint(50, 100);
+////        polygon.addPoint(150, 100);
+//        polygon.addPoint((int)this.triangleCorners.get(0).getX(),(int)this.triangleCorners.get(0).getY());
+//        polygon.addPoint((int)this.triangleCorners.get(1).getX(),(int)this.triangleCorners.get(1).getY());
+//        polygon.addPoint((int)this.triangleCorners.get(2).getX(),(int)this.triangleCorners.get(2).getY());
+//     
+//        g.fillPolygon(polygon);
+//        g.drawPolygon(polygon);
     }
 
     @Override
