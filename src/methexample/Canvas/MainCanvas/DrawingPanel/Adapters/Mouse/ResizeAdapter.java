@@ -5,7 +5,6 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.geom.Point2D;
 import java.awt.geom.Rectangle2D;
-import methexample.Canvas.MainCanvas.DrawingPanel.Shapes.Interfaces.IItemLocateable;
 import methexample.Canvas.MainCanvas.DrawingPanel.Shapes.Interfaces.IItems;
 import methexample.Canvas.MainCanvas.Interfaces.IBaseDrawingCanvas;
 
@@ -36,8 +35,6 @@ public class ResizeAdapter extends MouseAdapter {
                 //dimiourgei ena eikoniko rectangle
                 Rectangle2D r = new Rectangle2D.Double(x, y,
                     myResizeToHandle.getSIZE(), myResizeToHandle.getSIZE());
-                
-//((IItemLocateable)vLookUp).isHit(p);
                 if (r.contains(p)) {
                     myResizeToHandle.setUndo();
 

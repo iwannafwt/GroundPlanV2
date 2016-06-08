@@ -3,8 +3,8 @@ package methexample.Canvas.MainCanvas.ToolboxPanel.MouseAdapters;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import methexample.Canvas.MainCanvas.DrawingPanel.Shapes.Interfaces.IItemLocateable;
-import methexample.Canvas.MainCanvas.DrawingPanel.Shapes.Interfaces.IItems;
 import methexample.Canvas.MainCanvas.Interfaces.IBaseToolboxCanvas;
+import methexample.Canvas.MainCanvas.ToolboxPanel.Pair;
 
 /**
  *
@@ -12,26 +12,26 @@ import methexample.Canvas.MainCanvas.Interfaces.IBaseToolboxCanvas;
  */
 public class MouseEvents implements MouseListener {
 
-    private final IItems items;
+    //private final IItems items;
     private final IBaseToolboxCanvas toolboxItems;
     boolean clicked;
 
-    public MouseEvents(IItems myItem, IBaseToolboxCanvas toolboxItems) {
+    public MouseEvents(/*IItems myItem,*/ IBaseToolboxCanvas toolboxItems) {
         this.toolboxItems = toolboxItems;
-        this.items = myItem;
+        //this.items = myItem;
     }
 
     @Override
     public void mouseClicked(MouseEvent e) {
-        for (IItemLocateable vLookUp : toolboxItems.getItems()) {
-            if (vLookUp.isHit(e.getPoint())) {
-                toolboxItems.sendNewRegister(items);
+        for (/*IItemLocateable*/ Pair<IItems,methexample.Canvas.MainCanvas.DrawingPanel.Shapes.Interfaces.IItems>
+                vLookUp : toolboxItems.getItems()) {
+            if (((IItemLocateable)vLookUp.getLeft()).isHit(e.getPoint())) {
+                toolboxItems.sendNewRegister(/*items*/vLookUp.getRight());
             }
         }
 
         clicked = true;
 
-        System.out.println("einai ston MouseEvent For ToolBox");
 
     }
 

@@ -7,6 +7,7 @@ package methexample.Canvas.MainCanvas.DrawingPanel.Shapes;
 
 import java.awt.Graphics;
 import java.awt.Point;
+import java.awt.Polygon;
 import java.awt.geom.Point2D;
 import java.util.ArrayList;
 import java.util.List;
@@ -36,7 +37,11 @@ public class Circle implements IItems, IItemLocateable {
 
     @Override
     public boolean isHit(Point p) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+                        
+        double a = p.getX();
+        double b = p.getY();
+        
+        return true;
     }
 
     public Point getCircleCenter() {
@@ -70,7 +75,14 @@ public class Circle implements IItems, IItemLocateable {
 
     @Override
     public void doDrawing(Graphics g) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        Polygon s = new Polygon();
+            for (int i = 0; i < 360; i++) {
+                double t = i / 360.0;
+                s.addPoint((int) (150 + 50 * t * Math.cos(8 * t * Math.PI)),
+                    (int) (150 + 50 * t * Math.sin(8 * t * Math.PI)));
+        }
+        g.fillPolygon(s);
+        g.drawPolygon(s);
     }
 
     @Override
@@ -84,6 +96,6 @@ public class Circle implements IItems, IItemLocateable {
 
     @Override
     public int getSize() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return helperSize;
     }
 }
