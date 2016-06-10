@@ -1,14 +1,15 @@
-package methexample.Canvas.MainCanvas.ToolboxPanel.Items;
+package methexample.Canvas.MainCanvas.ToolboxPanel.Items.shape;
 
 import java.awt.Point;
 import java.awt.geom.Rectangle2D;
 import methexample.Canvas.MainCanvas.DrawingPanel.Shapes.Interfaces.IItemLocateable;
+import methexample.Canvas.MainCanvas.ToolboxPanel.MouseAdapters.IItems;
 
 /**
  *
  * @author ΙΩΑΝΝΑ
  */
-public class Rectangle extends Rectangle2D.Float implements IItemLocateable{
+public class Rectangle extends Rectangle2D.Float implements IItemLocateable,IItems{
     //einai to RectangleConst
     
     public Rectangle(float x, float y, float width, float height) {
@@ -38,11 +39,8 @@ public class Rectangle extends Rectangle2D.Float implements IItemLocateable{
 
     @Override
     public boolean isHit(Point p) {
-        
-        double a = p.getX();
-        double b = p.getY();
-        
-        return true;
+
+        return contains(p);
     }
 
 }

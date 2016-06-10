@@ -10,7 +10,7 @@ import methexample.Canvas.MainCanvas.BaseFrame;
  */
 public class UndoRedoListener extends KeyAdapter {
 
-    private final BaseFrame baseFrame; 
+    private final BaseFrame baseFrame;
 
     public UndoRedoListener(BaseFrame baseFrame) {
         this.baseFrame = baseFrame;

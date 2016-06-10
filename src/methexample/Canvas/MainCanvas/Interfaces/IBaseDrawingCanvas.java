@@ -24,9 +24,9 @@ public interface IBaseDrawingCanvas {
     void setPos(int pos);
     int getHelperSize();
     void paintComponent(Graphics g);
-    void registerMouseListeners(MouseAdapter MA);
-    void setPosForItem(int posForItem);
-    int getPosForItem();
+    void registerMouseListeners(MouseAdapter MA); 
+    public IItems getItemForMoving(); 
+    public void setItemForMoving(IItems itemToMove);
     boolean undo();
     boolean redo();
     void setUndo();
