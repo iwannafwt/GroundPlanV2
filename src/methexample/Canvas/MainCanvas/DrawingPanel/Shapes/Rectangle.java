@@ -43,11 +43,7 @@ public class Rectangle implements IItems, IItemLocateable , java.io.Serializable
 
     @Override
     public boolean isHit(Point p) {
-        
-        double a = p.getX();
-        double b = p.getY();
-        
-        return true;
+       return myShape.contains(p);
     }
 
     public List<Point2D> getRectangeCorners() {
@@ -101,5 +97,19 @@ public class Rectangle implements IItems, IItemLocateable , java.io.Serializable
     @Override
     public int getSize() {
         return helperSize;
+    }
+
+    @Override
+    public void moveItem(Point2D p) {
+        Point2D p2Go = new Point();
+        /*to panw to pont*/
+        p2Go.setLocation(rectangeCorners.get(0).getX() + (int)p.getX(), rectangeCorners.get(0).getY() + (int)p.getY());
+        rectangeCorners.set(0, new Point((Point)p2Go));
+        
+        /*to katw to point*/
+        p2Go.setLocation(rectangeCorners.get(1).getX() + (int)p.getX() , rectangeCorners.get(1).getY() + (int)p.getY());
+        rectangeCorners.set(1,new Point((Point)p2Go));
+        
+        generateRectangle();
     }
 }

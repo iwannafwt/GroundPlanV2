@@ -98,4 +98,9 @@ public class Circle implements IItems, IItemLocateable {
     public int getSize() {
         return helperSize;
     }
+
+    @Override
+    public void moveItem(Point2D p) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 }

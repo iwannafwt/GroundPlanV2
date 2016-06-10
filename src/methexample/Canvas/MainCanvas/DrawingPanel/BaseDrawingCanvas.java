@@ -28,7 +28,8 @@ public class BaseDrawingCanvas extends JPanel implements IBaseDrawingCanvas {
     private final int SIZE = 8;//to megethos apo to mikro tetragwnaki
     private int pos;
     private int posCorner;
-    private int posForItem;
+    
+    private IItems itemToMove;
     
     private IItems polygon;
     private IItems circle;
@@ -68,13 +69,13 @@ public class BaseDrawingCanvas extends JPanel implements IBaseDrawingCanvas {
    
     
     @Override
-    public int getPosForItem() {
-        return posForItem;
+    public IItems getItemForMoving() {
+        return itemToMove;
     }
     
     @Override
-    public void setPosForItem(int posForItem) {
-        this.posForItem = posForItem;
+    public void setItemForMoving(IItems itemToMove) {
+        this.itemToMove = itemToMove;
     }
      //</editor-fold>
 
@@ -84,7 +85,7 @@ public class BaseDrawingCanvas extends JPanel implements IBaseDrawingCanvas {
 
     private void initUI(int x1, int x2, int y1, int y2) {
 
-        posForItem = -1;
+        itemToMove = null;
         pos = -1;//otan to position einai -1 simenei oti exoume 
         //kseklikarei to pontiki 
         rectangleOne = new Rectangle(new Point(x1 * 4, y1 * 4), new Point(x2 * 4, y2 * 4), 8);
@@ -107,7 +108,7 @@ public class BaseDrawingCanvas extends JPanel implements IBaseDrawingCanvas {
          *--------*
          */
     }
-
+    
     private void doDrawing(Graphics g) {
         Graphics2D g2 = (Graphics2D) g;
         Background backGround = new Background();
